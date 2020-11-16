@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>TODO</title>
+        <script>
+            var array=[];
+
+            function addTask()
+            {
+                var add = document.getElementById('addtask').value;
+
+                var addobject=
+                {
+                    add
+                };
+                
+                array.push(addobject);
+                display();
+            }
+            
+            function display()
+            {
+                var div="<table>";
+        
+                for(i=0; i<=array.length-1; i++)
+                {
+                    div+="<ul>\
+                    <li><input type='radio' class='add' id='add'>\
+                    "+array[i].add+"\
+                    <input type='text' id='alpha_"+i+"'>\
+                    <button onclick='ClickDelete("+i+")'>delete</button>\
+                    <button onclick='editrow("+i+")'>Edit</button> <button id='btnupdate' style='display:none' onclick='update("+i+")'>Update</button></li></ul>";
+                }
+                document.getElementById("todo").innerHTML = div;       
+            }
+
+            function ClickDelete(i)
+            {
+                array.splice(i,1);
+                display();
+            }
+
+            function editrow(i)
+            {
+                document.getElementById("alpha_"+i).value = array[i].add;   
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="form">            
+            <label for="addtask">ADD TASK
+                <input type="text" id="addtask">
+                <input id='btn_add' class="button" type="submit" value="ADD" onclick="addTask()">
+            </label>
+        </div>
+
+        <div>
+            <h3>Todo:</h3>
+            <div id="todo"></div>
+        </div>
+        <div id="completed"></div>
+    </body>
+</html>
